@@ -17,8 +17,6 @@ export class AppComponent implements OnInit
 data : any;
 topics : any;
 newData : any;
-id="all";
-
 topic = "All"
 difficulty = "All"
 status= "All"
@@ -32,19 +30,25 @@ ngOnInit() {
 	    this.allExercises();
   }
 
-selectDifficulty(id) {
-    console.log(id);
-    this.conditionSelect(id);
-  }
+firstSelect(id){
+	this.selectFilter(id,this.topic, this.status);
+}
 
+secondSelect(id){
+		this.selectFilter(this.difficulty,id, this.status);
+}
+
+thirdSelect(id){
+			this.selectFilter(this.difficulty,this.topic, id);
+}
+
+// a fonction that helps filter topics that was choosen by the user 
 selectTopic(id){
 	this.topic = id;
 	console.log(id);
 	if(id ==="All"){
-		this.newData = this.data;
-		this.selectDifficulty(this.difficulty);
+		console.log(this.newData);
 	}else{
-		this.topic = id;
 		let dataTopics = [];
 		for(let d of this.newData){
 				console.log(d['topics'].length);
@@ -61,17 +65,15 @@ selectTopic(id){
 			}
 		}
 	this.newData = dataTopics;
-	// this.resetData(this.newData, this.difficulty,this.status);
 	}
 }
 
-
+// filter status 
 selectStatus(status){
 	console.log("enter status");
 	this.status = status;
 	if(status === "All"){
-		this.newData = this.data;
-		this.selectTopic(this.topic);
+		console.log("status func :"+this.newData)
 	}else{
 		let help =[]
 		for (let d of this.newData){
@@ -88,20 +90,23 @@ selectStatus(status){
 	}
 }
 
-// resetData(data, diff , status){
-// this.selectDifficulty(this.difficulty);
-// this.se
-// }
 
-conditionSelect(id){
-	console.log("enter sleect difff")
+selectFilter(diff, topic, status){
+
+	this.selectDifficulty(diff);
+	this.selectTopic(topic);
+	this.selectStatus(status);
+}
+
+
+selectDifficulty(id){
 	this.difficulty = id;
-	if(id =="All"){
+	if(id ==="All"){
 		this.newData= this.data;
 	}else{
 		let help = []
 		console.log(id);
-	for (let d of this.newData){
+	for (let d of this.data){
 			console.log(d.difficulty);
 		if(d.difficulty === this.difficulty){
 			console.log(d["difficulty"]);

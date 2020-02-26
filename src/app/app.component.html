@@ -1,13 +1,13 @@
 <body>
 <div>
-  <div class="row">
+  <div class="row border_class">
 
         <div class="col-sm-6 col-md-3">
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 class_font">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Difficulty:</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01" (change)="selectDifficulty($event.target.value)" >
+            <select class="custom-select" id="inputGroupSelect01" (change)="firstSelect($event.target.value)" >
               <option selected>All</option>
               <option >Easy</option>
               <option >Meduim</option>
@@ -18,11 +18,11 @@
         </div>
 
         <div class="col-sm-6 col-md-3">
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 class_font">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Topic:</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01" (change)="selectTopic($event.target.value)">
+            <select class="custom-select" id="inputGroupSelect01" (change)="secondSelect($event.target.value)">
               <option selected>All</option>
               <option>Algorithms</option>
               <option>Arrays</option>
@@ -36,11 +36,11 @@
         </div>
 
         <div class="col-sm-6 col-md-3">
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 class_font">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Status:</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01" (change)="selectStatus($event.target.value)">
+            <select class="custom-select" id="inputGroupSelect01" (change)="thirdSelect($event.target.value)">
               <option selected>All</option>
               <option >In progress</option>
               <option >Unlocked</option>
@@ -51,28 +51,26 @@
         </div>
     </div>
 
-<div class="row">
+<div class="row border_class">
 
         <div class="col-sm-6 col-md-4" *ngFor="let exercise of newData" >
-            <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
+          <a href="/">
+            <div class="card border-success mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters ">
                       <div class="col-md-4">
-                        <img src="//placehold.it/200" class="card-img" alt="...">
+                        <img src="https://assets.exercism.io/tracks/java-bordered-green.png" class="card-img image_card" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title">{{exercise.title}}</h5>
-                          <p class="card-text">{{exercise.difficulty}}</p>
-                          <p class="card-text" *ngFor="let topic of exercise['topics']"><small class="text-muted">{{topic.name}}</small></p>
+                          <h5 class="card-title class_font">{{exercise.title}}</h5>
+                          <p class="card-text text_card class_font">{{exercise.difficulty}}</p>
+                          <span class="badge badge-light class_font" *ngFor="let topic of exercise['topics']" >{{topic.name}}</span>
                         </div>
                       </div>
                     </div>
                   </div>
+                </a>
             </div>
 </div>
 </div>
-
-
-
-
 </body>
